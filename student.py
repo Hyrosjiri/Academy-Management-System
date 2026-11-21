@@ -13,9 +13,11 @@ class Student(Person):
         return info
     
     def enroll_in_course(self, course):
-        self.courses.append(course)
-        return True
-    
+        if course and course not in self.courses:
+            self.courses.append(course)
+            return True
+        return False
+        
     def get_courses(self):
         return self.courses
     
