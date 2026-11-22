@@ -16,10 +16,10 @@ def load_json(name_json):
 
 def save_json(name_json, file_data):
     with open(name_json, "w", encoding="utf-8") as file:
-        json.dump(file, file_data, ensure_ascii=False, indent=4)  
+        json.dump(file_data, file, ensure_ascii=False, indent=4)  
 
-def print_title(title: str, width):
+def print_title(title: str, width=40):
     print("=" * width)
-    print(title.center)
+    print(title.center(width))
     print("=" * width)
     print()
