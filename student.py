@@ -2,10 +2,10 @@ from person import Person
 
 
 class Student(Person):
-    def __init__(self, name, email, phone, student_id, courses = []):
+    def __init__(self, name, email, phone, student_id):
         super().__init__(name, email, phone)
         self.student_id = student_id
-        self.courses = courses
+        self.courses = []
 
     #  přidá kurz studentovi
     def enroll_student_in_course(self, course):

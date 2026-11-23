@@ -1,7 +1,3 @@
-from student import Student
-from course import Course
-
-
 class Payment:
     def __init__(self, student, course, amount, date, status="pending"):
         pass

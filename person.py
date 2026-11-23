@@ -5,7 +5,7 @@ class Person:
     def edit_email(self, new_email):
         pass
 
-    def edit_name(self, new_email):
+    def edit_name(self, new_name):
         pass
 
     def edit_phone(self, new_phone):
