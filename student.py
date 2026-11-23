@@ -8,16 +8,25 @@ class Student(Person):
         self.courses = []
 
     #  přidá kurz studentovi
-    def enroll_student_in_course(self, course):
-        pass
+    def enroll_in_course(self, course):
+        if course:
+            self.courses.append(course)
+            return True
+        return False
 
     # odebere kurz studentovi
     def remove_course(self, course):
-        pass
+        if course in self.courses:
+            self.courses.remove(course)
+            return True
+        return False
 
     # převod na slovník
     def to_dict(self):
-        pass
-
-
-
+        return {
+            "name": self.name,
+            "email": self.email,
+            "phone": self.phone,
+            "student_id": self.student_id,
+            "courses": [course.name for course in self.courses]
+        }

@@ -1,16 +1,32 @@
 class Payment:
     def __init__(self, student, course, amount, date, status="pending"):
-        pass
+        self.student = student
+        self.course = course
+        self.amount = amount
+        self.date = date
+        self.status = status
 
     # Označit jako zaplaceno
     def mark_as_paid(self):
-        pass
+        if self.status == "pending":
+            self.status = "paid"
+            return True
+        return False
 
     # Označit jako nezaplaceno
     def mark_as_pending(self):
-        pass
+        if self.status == "paid":
+            self.status = "pending"
+            return True
+        return False
 
     # Převod na slovník
     def to_dict(self):
-        pass
+        return {
+            "student": self.student,
+            "course": self.course,
+            "amount": self.amount,
+            "date": self.date,
+            "status": self.status
+        }
 
