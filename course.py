@@ -17,6 +17,18 @@ class Course:
             self.students.remove(student)
             return True
         return False
+    
+    def add_instructor(self, instructor):
+        if instructor:
+            self.instructors.append(instructor)
+            return True
+        return False
+    
+    def remove_instructor(self, instructor):
+        if instructor:
+            self.instructors.remove(instructor)
+            return True
+        return False
 
     # Vrátí počet volných míst
     def get_available_slots(self):
@@ -30,5 +42,3 @@ class Course:
             "instructors": [instructor.email for instructor in self.instructors],
             "students": [student.student_id for student in self.students]
         }
-
-    #  metoda na intruktora přidat odebrat

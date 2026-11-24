@@ -51,30 +51,49 @@ class Academy():
                     return course
         return False
 
-        # Přihlásí studenta do kurzu
+    # Přihlásí studenta do kurzu
     def enroll_student(self, student, course):
         if student and course:
             if course.add_student(student):
-                student.enroll_in_course(course)
-                return True
+                if student.enroll_in_course(course):
+                    return True
+                course.remove_student(student)
+
         return False
 
     # Odhlásí studenta z kurzu
     def remove_student_from_course(self, student, course):
         if student and course:
             if course.remove_student(student):
-                student.remove_course(course)
-                return True
+                if student.remove_course(course):
+                    return True
+                course.add_student(student)
         return False
-
-"""
-Chyby
-3. enroll_student() – neověřuješ úspěch obou operací.
-4. remove_student_from_course() – neověřuješ úspěch obou operací.
-Co chybí
-1. assign_instructor_to_course() – přiřazení lektora ke kurzu.
-2. remove_instructor_from_course() – odebrání lektora z kurzu.
-3. Metody pro správu plateb.
-4. Metoda pro výpočet celkových tržeb.
-5. to_dict() – převod akademie na slovník pro JSON.
- """
+    
+    # Přiřazení lektora ke kurzu
+    def assign_instructor_to_course(self, instructor, course):
+        if instructor and course:
+            if course.add_instructor(instructor):
+                if instructor.assign_course(course):
+                    return True
+                course.remove_instructor(instructor)
+        return False
+    
+    # Odebrání lektro z kurzu
+    def remove_instructor_from_course(self, instructor, course):
+        if instructor and course:
+            if course.remove_instructor(instructor):
+                if instructor.remove_course(course):
+                    return True
+                course.add_instructor(instructor)
+        return False
+    
+    # Převod do slovníku
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "students": [student.to_dict() for student in self.students],
+            "instructors": [instructor.to_dict() for instructor in self.instructors],
+            "courses": [course.to_dict() for course in self.courses],
+            "payments": [payment.to_dict() for payment in self.payments]
+        }
