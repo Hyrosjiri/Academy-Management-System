@@ -23,10 +23,9 @@ class Payment:
     # Převod na slovník
     def to_dict(self):
         return {
-            "student": self.student,
-            "course": self.course,
+            "student": self.student.student_id,
+            "course": self.course.name,
             "amount": self.amount,
             "date": self.date,
             "status": self.status
         }
-

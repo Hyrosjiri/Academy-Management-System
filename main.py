@@ -36,7 +36,7 @@ from utils import (
     load_json,
     save_json,
     wait_enter,
-    print_title,
+    print_title
 )
 
 # Importy textových konstant

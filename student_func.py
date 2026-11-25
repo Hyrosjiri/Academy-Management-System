@@ -9,7 +9,8 @@ from utils import(
     get_int,
     clear_screen,
     load_json,
-    save_json
+    save_json,
+    get_email
 )
 
 # Importy textových konstant
@@ -27,7 +28,7 @@ def add_student(academy: Academy):
     if name == "0":
         return
     
-    email = input("\nEmail:\n>> ")
+    email = get_email("\nEmail:\n>> ")
     phone = get_int("\nTelefoní číslo:\n>> ")
     student_id = last_id + 1
 
@@ -45,7 +46,7 @@ def remove_student(academy: Academy):
         print(EMPTY_DATABASE)
         return
 
-    email = input("Email:\n>> ")
+    email = get_email("\nEmail:\n>> ")
 
     if email == "0":
         return
@@ -118,7 +119,7 @@ def edit_student(academy: Academy):
             case "1":
                 student.name = input("\nNové jméno: ")
             case "2":
-                student.email = input("\nNový email: ")
+                student.email = get_email("\nNový email:\n>> ")
             case "3":
                 student.phone = get_int("\nNový telefon: ")
             case "0":

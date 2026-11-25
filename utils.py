@@ -40,3 +40,13 @@ def get_int(text):
             return data
         except ValueError:
             print(f"[CHYBA] Neplaný vstup!\n") 
+            
+            
+def get_email(text):
+    while True:
+        data = input(text).lower()
+        if "@" in data:
+            return data
+        print("\n[CHYBA] Neplatný email!")
+        
+        
