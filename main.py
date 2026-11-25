@@ -50,16 +50,21 @@ from prompt import (
 
 
 # Funkce
-def load_file():
-    pass
+def load_file(name_academy):
+    data = load_json("academy.json")
 
-def save_file():
-    pass
+    if data is None:
+        return Academy(name_academy)
+
+    return Academy.from_dict(data)
+
+def save_file(academy: Academy):
+    save_json("academy.json", academy.to_dict())
 
 
 # Hlavní program
-def main(name_course):
-    academy = Academy(name_course)
+def main(name_academy):
+    academy = load_file(name_academy)
     
     while True:
         clear_screen()
@@ -212,7 +217,7 @@ def main(name_course):
                             time.sleep(0.4)
 
             case "q" | "Q":
-                
+                save_file(academy)
                 break
             
             case _:

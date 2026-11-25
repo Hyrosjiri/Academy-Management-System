@@ -2,11 +2,14 @@
 from student import Student
 from academy import Academy
 
+
 # Importy pomocných funkcí
 from utils import(
     print_title,
     get_int,
-    clear_screen
+    clear_screen,
+    load_json,
+    save_json
 )
 
 # Importy textových konstant
@@ -16,6 +19,7 @@ from prompt import(
 
 
 def add_student(academy: Academy):
+    last_id = load_json("student_id.json")[-1]["id"]
     print_title("PŘIDÁNÍ STUDENTA")
     
     name = input("Jméno:\n>> ")
@@ -23,14 +27,15 @@ def add_student(academy: Academy):
     if name == "0":
         return
     
-    email = input("Email:\n>> ")
-    phone = get_int("Telefoní číslo:\n>> ")
-    student_id = len(academy.students) + 1
+    email = input("\nEmail:\n>> ")
+    phone = get_int("\nTelefoní číslo:\n>> ")
+    student_id = last_id + 1
 
     student = Student(name, email, phone, student_id)
 
     if academy.add_student(student):
         print(f"\n[HOTOVO] {student.name} přidán.")
+        save_json("student_id.json", [{"id": student_id}])
 
 
 def remove_student(academy: Academy):
@@ -51,9 +56,12 @@ def remove_student(academy: Academy):
         print("\n[INFO] Student nenalezen.")
         return
 
-    if academy.remove_student(student):
-        print(f"\n[INFO] {student.name} - Odstraněn")
-
+    if not student.courses:
+        if academy.remove_student(student):
+            print(f"\n[INFO] {student.name} - Odstraněn")
+            return
+        
+    print("\n[INFO] Nesmí být přihlášen do kurzu.")
 
 def show_students(academy: Academy):
     print_title("STUDENTI")
@@ -162,7 +170,7 @@ def unenroll_student(academy: Academy):
         print("\n[INFO] Student nenalezen")
         return
     
-    course_name = input("Název kurzu:\n>> ")
+    course_name = input("\nNázev kurzu:\n>> ")
     course = academy.find_course(course_name)
 
     if not course:

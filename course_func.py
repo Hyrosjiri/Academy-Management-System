@@ -34,7 +34,7 @@ def create_course(academy: Academy):
 def remove_course(academy: Academy):
     print_title("ODSTRANĚNÍ KURZU")
 
-    name = input("\nJméno:\n>> ")
+    name = input("Jméno:\n>> ")
 
     if name == "0":
         return
@@ -45,8 +45,11 @@ def remove_course(academy: Academy):
         print("[INFO] Kurz nenalezen.")
         return
     
-    if academy.remove_course(course):
-        print(f"\n[INFO] {course.name} - Odstraněn")
+    if not course.instructors and not course.students:
+        if academy.remove_course(course):
+            print(f"\n[INFO] {course.name} - Odstraněn")
+            return
+    print("\nKurz pro odsranění musí být prázdný.")    
 
 
 def show_courses(academy: Academy):

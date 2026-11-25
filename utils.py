@@ -14,8 +14,8 @@ def load_json(name_json):
     try:
         with open(name_json, "r", encoding="utf-8") as file:
             return json.load(file)
-    except ValueError:
-        return []
+    except (FileNotFoundError, json.JSONDecodeError):
+        return None
 
 
 def save_json(name_json, file_data):

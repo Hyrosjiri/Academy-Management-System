@@ -1,3 +1,7 @@
+from course import Course
+from instructor import Instructor
+from student import Student
+
 class Academy():
     def __init__(self, name):
         self.name = name
@@ -115,3 +119,51 @@ class Academy():
             "courses": [course.to_dict() for course in self.courses],
             "payments": [payment.to_dict() for payment in self.payments]
         }
+        
+    @classmethod
+    def from_dict(cls, data):
+        academy = cls(data["name"])
+
+        # Obnovení studentů
+        for student_data in data["students"]:
+            student = Student(
+                student_data["name"],
+                student_data["email"],
+                student_data["phone"],
+                student_data["student_id"]
+            )
+            academy.add_student(student)
+
+        # Obnovení lektorů
+        for instructor_data in data["instructors"]:
+            instructor = Instructor(
+                instructor_data["name"],
+                instructor_data["email"],
+                instructor_data["phone"],
+                instructor_data["specialization"],
+                instructor_data["hourly_rate"]
+            )
+            academy.add_instructor(instructor)
+
+        # Obnovení kurzů
+        for course_data in data["courses"]:
+            course = Course(
+                course_data["name"],
+                course_data["price"],
+                course_data["capacity"]
+            )
+            academy.create_course(course)
+
+            # Přiřazení lektorů ke kurzu
+            for email in course_data["instructors"]:
+                instructor = academy.find_instructor(email)
+                academy.assign_instructor_to_course(instructor, course)
+
+            # Přihlášení studentů do kurzu
+            for student_id in course_data["students"]:
+                for student in academy.students:
+                    if student.student_id == student_id:
+                        academy.enroll_student(student, course)
+                        break
+
+        return academy

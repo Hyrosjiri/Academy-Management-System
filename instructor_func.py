@@ -24,10 +24,10 @@ def add_instructor(academy: Academy):
     if name == "0":
         return
     
-    email = input("Email:\n>> ")
-    phone = get_int("Telefoní číslo:\n>> ")
-    specialization = input("Specializace:\n>> ")
-    hourly_rate = get_int("Hodinová mzda:\n>> ")
+    email = input("\nEmail:\n>> ")
+    phone = get_int("\nTelefoní číslo:\n>> ")
+    specialization = input("\nSpecializace:\n>> ")
+    hourly_rate = get_int("\nHodinová mzda:\n>> ")
 
     instructor = Instructor(name, email, phone, specialization, hourly_rate)
 
@@ -70,7 +70,7 @@ def show_instructors(academy: Academy):
         print(f"Telefoní číslo: {instructor.phone}")
         print(f"Specializace: {instructor.specialization}")
         print(f"Hodinová mzda: {instructor.hourly_rate} Kč")
-        result = "Žádný" if not instructor.courses else ", ".join(instructor.name for course in instructor.courses)
+        result = "Žádný" if not instructor.courses else ", ".join(instructor.name for instructor in instructor.courses)
         print(f"Kurzy: {result}")
         print()
 
