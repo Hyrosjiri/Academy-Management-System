@@ -1,6 +1,4 @@
 # Importy tříd
-import email
-
 from student import Student
 from academy import Academy
 
@@ -8,7 +6,8 @@ from academy import Academy
 from utils import(
     print_title,
     get_int,
-    wait_enter
+    wait_enter,
+    clear_screen
 )
 
 # Importy textových konstant
@@ -95,11 +94,34 @@ def edit_student(academy: Academy):
         pass
 
     while True:
-        print(student.name)
-        print(student.email)
-        print(student.phone)
+        print(f"Jméno:   {student.name}")
+        print(f"Email:   {student.email}")
+        print(f"Telefon: {student.phone}")
+
+        command = input(
+            "\n[1] Změnit jméno\n"
+            "[2] Změnit email\n"
+            "[3] Změnit telefon\n"
+            "\n[0] Zpět\n"
+            "\nVyber možnost: "
+        )
+
+        match command:
+            case "1":
+                student.name = input("Nové jméno: ")
+            case "2":
+                student.email = input("Nový email: ")
+            case "3":
+                student.phone = input("Nový telefon: ")
+            case "0":
+                break
+            case _:
+                print("Neplatná volba.")
 
         wait_enter()
+        clear_screen()
+
+        
 
 
 
