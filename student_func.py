@@ -91,9 +91,10 @@ def edit_student(academy: Academy):
 
     if not student:
         print("\n[INFO] Student nenalezen.")
-        pass
+        return
 
     while True:
+        clear_screen()
         print(f"Jméno:   {student.name}")
         print(f"Email:   {student.email}")
         print(f"Telefon: {student.phone}")
@@ -108,20 +109,15 @@ def edit_student(academy: Academy):
 
         match command:
             case "1":
-                student.name = input("Nové jméno: ")
+                student.name = input("\nNové jméno: ")
             case "2":
-                student.email = input("Nový email: ")
+                student.email = input("\nNový email: ")
             case "3":
-                student.phone = input("Nový telefon: ")
+                student.phone = get_int("\nNový telefon: ")
             case "0":
                 break
             case _:
-                print("Neplatná volba.")
-
-        wait_enter()
-        clear_screen()
-
-        
+                print("\nNeplatná volba.")
 
 
 
