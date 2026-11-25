@@ -162,15 +162,19 @@ def main(name_course):
                     match command:
 
                         case "1":
+                            clear_screen()
                             create_course(academy)
 
                         case "2":
+                            clear_screen()
                             remove_course(academy)
 
                         case "3":
+                            clear_screen()
                             show_courses(academy)
 
                         case "4":
+                            clear_screen()
                             edit_course(academy)
 
                         case "0":
@@ -179,8 +183,9 @@ def main(name_course):
                         case _:
                             print("Neplatná volba.")
                             time.sleep(0.4)
+                            continue
 
-                continue
+                    wait_enter()
 
             case "4":
                 while True:

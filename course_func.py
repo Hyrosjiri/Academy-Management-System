@@ -5,7 +5,8 @@ from academy import Academy
 # Importy pomocných funkcí
 from utils import(
     print_title,
-    get_int
+    get_int,
+    clear_screen
 )
 
 # Importy textových konstant
@@ -31,7 +32,21 @@ def create_course(academy: Academy):
 
 
 def remove_course(academy: Academy):
-    pass
+    print_title("ODSTRANĚNÍ KURZU")
+
+    name = input("\nJméno:\n>> ")
+
+    if name == "0":
+        return
+    
+    course = academy.find_course(name)
+
+    if not course:
+        print("[INFO] Kurz nenalezen.")
+        return
+    
+    if academy.remove_course(course):
+        print(f"\n[INFO] {course.name} - Odstraněn")
 
 
 def show_courses(academy: Academy):
@@ -59,4 +74,45 @@ def show_courses(academy: Academy):
 
 
 def edit_course(academy: Academy):
-    pass
+    print_title("UPRAVENÍ KURZU")
+
+    if not academy.courses:
+        print(EMPTY_DATABASE)
+        return
+    
+    name = input("Název:\n>> ")
+
+    if name == "0":
+        return
+    
+    course = academy.find_course(name)
+
+    if not course:
+        print("\n[INFO] Kurz nenalezen")
+        return
+    
+    while True:
+        clear_screen()
+        print(f"Název:    {course.name}")
+        print(f"Cena:     {course.price} Kč")
+        print(f"Kapacita: {course.capacity}")
+
+        command = input(
+            "\n[1] Změnit název\n"
+            "[2] Změnit cenu\n"
+            "[3] Změnit kapacitu\n"
+            "\n[0] Zpět\n"
+            "\nVyber možnost: "
+        )
+
+        match command:
+            case "1":
+                course.name = input("\nNová název: ")
+            case "2":
+                course.price = get_int("\nNová cena: ")
+            case "3":
+                course.capacity = get_int("\nNová kapacita: ")
+            case "0":
+                break
+            case _:
+                print("\nNeplatná volba.")

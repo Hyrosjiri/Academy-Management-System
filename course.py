@@ -5,6 +5,7 @@ class Course:
         self.capacity = capacity
         self.instructors = []
         self.students = []
+        
 
     def add_student(self, student):
         if student and self.get_available_slots() > 0:

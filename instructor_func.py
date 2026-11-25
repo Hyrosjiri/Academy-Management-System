@@ -50,11 +50,12 @@ def remove_instructor(academy: Academy):
     instructor = academy.find_instructor(email)
 
     if not instructor:
-        print(f"\n[INFO] Instruktor nenalezen.")
+        print("\n[INFO] Instruktor nenalezen.")
         return
     
     if academy.remove_insturctor(instructor):
-        print(f"\n[INFO] {instructor.name} - Odstaněn")
+        print(f"\n[INFO] {instructor.name} - Odstraněn")
+
 
 def show_instructors(academy: Academy):
     print_title("INSTRUKTOŘI")
@@ -95,7 +96,7 @@ def edit_instructor(academy: Academy):
     while True:
         clear_screen()
         print(f"Jméno:   {instructor.name}")
-        print(f"Email:   {instructor.phone}")
+        print(f"Email:   {instructor.email}")
         print(f"Telefon: {instructor.phone}")
 
         command = input(

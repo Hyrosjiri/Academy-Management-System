@@ -38,6 +38,12 @@ class Academy():
             self.courses.append(course)
             return True
         return False
+    
+    def remove_course(self, course):
+        if course:
+            self.courses.remove(course)
+            return True
+        return False
 
     # Vyhledá studenta po emailu
     def find_student(self, email):
