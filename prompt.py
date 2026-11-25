@@ -1,4 +1,4 @@
-MAIN_MENU = """ [1] Správa studentů
+MAIN_MENU = """[1] Správa studentů
 [2] Správa instruktorů
 [3] Správa kurzů
 [4] Správa plateb
@@ -29,6 +29,22 @@ INSTRUCTOR_MENU = """[1] Přidat instruktora
 
 Vyber možnost: """
 
+COURSE_MENU = """[1] Vytvořit kurz
+[2] Odstranit kurz
+[3] Zobrazit kurzy
+[4] Upravit údaje
+
+[0] Zpět
+
+Vyber možnost: """
+
+PAYMENT_MENU = """[1] Vytvořit platbu
+[2] Uhradit platbu
+[3] Zobrazit platby a tržby
+
+[0] Zpět
+
+Vyber možnost: """
 
 
 
