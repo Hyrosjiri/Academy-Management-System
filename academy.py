@@ -26,6 +26,12 @@ class Academy():
             return True
         return False
 
+    def remove_insturctor(self, instructor):
+        if instructor:
+            self.instructors.remove(instructor)
+            return True
+        return False
+
     # Vytvoří nový kurz
     def create_course(self, course):
         if course:

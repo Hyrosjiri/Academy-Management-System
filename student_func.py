@@ -6,7 +6,6 @@ from academy import Academy
 from utils import(
     print_title,
     get_int,
-    wait_enter,
     clear_screen
 )
 
@@ -120,7 +119,6 @@ def edit_student(academy: Academy):
                 print("\nNeplatná volba.")
 
 
-
 # Přihlásit studenta na kurz
 def enroll_student(academy: Academy):
     print_title("PŘIHLÁŠENÍ STUDENTA NA KURZ")
@@ -129,18 +127,17 @@ def enroll_student(academy: Academy):
         print(EMPTY_DATABASE)
         return
     
-    student_email = input("Zadej email:\n>> ")
-    student = academy.find_student(student_email)
+    student = academy.find_student(input("Zadej email:\n>> "))
     
     if not student:
         print("\n[INFO] Student nenalezen")
         return
     
-    course_name = input("Název kurzu:\n>> ")
+    course_name = input("\nNázev kurzu:\n>> ")
     course = academy.find_course(course_name)
 
     if not course:
-        print(f"\n[INFO] Kurz nenalezen")
+        print("\n[INFO] Kurz nenalezen")
         return
     
     if academy.enroll_student(student, course):
@@ -148,6 +145,7 @@ def enroll_student(academy: Academy):
         return
         
     print(f"\n[INFO] Plná Kapacita kurzu.")
+
 
 # Odhlásit studenta z kurzu
 def unenroll_student(academy: Academy):

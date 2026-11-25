@@ -5,7 +5,8 @@ from academy import Academy
 # Importy pomocných funkcí
 from utils import(
     print_title,
-    get_int
+    get_int,
+    clear_screen
 )
 
 # Importy textových konstant
@@ -35,8 +36,25 @@ def add_instructor(academy: Academy):
 
 
 def remove_instructor(academy: Academy):
-    pass
+    print_title("ODEBRÁNÍ INSTRUKTURA")
 
+    if not academy.instructors:
+        print(EMPTY_DATABASE)
+        return
+    
+    email = input("Email:\n>> ")
+
+    if email == "0":
+        return
+    
+    instructor = academy.find_instructor(email)
+
+    if not instructor:
+        print(f"\n[INFO] Instruktor nenalezen.")
+        return
+    
+    if academy.remove_insturctor(instructor):
+        print(f"\n[INFO] {instructor.name} - Odstaněn")
 
 def show_instructors(academy: Academy):
     print_title("INSTRUKTOŘI")
@@ -57,12 +75,98 @@ def show_instructors(academy: Academy):
 
 
 def edit_instructor(academy: Academy):
-    pass
+    print_title("UPRAVENÍ INSTRUKTORA")
+
+    if not academy.instructors:
+        print(EMPTY_DATABASE)
+        return
+    
+    email = input("Email:\n>> ")
+
+    if email == "0":
+        return
+    
+    instructor = academy.find_instructor(email)
+
+    if not instructor:
+        print("\n[INFO] Instruktor nenalezen.")
+        return
+    
+    while True:
+        clear_screen()
+        print(f"Jméno:   {instructor.name}")
+        print(f"Email:   {instructor.phone}")
+        print(f"Telefon: {instructor.phone}")
+
+        command = input(
+            "\n[1] Změnit jméno\n"
+            "[2] Změnit email\n"
+            "[3] Změnit telefon\n"
+            "\n[0] Zpět\n"
+            "\nVyber možnost: "
+        )
+
+        match command:
+            case "1":
+                instructor.name = input("\nNové jméno: ")
+            case "2":
+                instructor.email = input("\nNový email: ")
+            case "3":
+                instructor.phone = get_int("\nNový telefon: ")
+            case "0":
+                break
+            case _:
+                print("\nNeplatná volba.")
 
 
+# Přihlásit instruktora na kuz
 def enroll_instructor(academy: Academy):
-    pass
+    print_title("PŘIHLÁŠENÍ INSTRUKTORA NA KURZ")
+
+    if not academy.instructors or not academy.courses:
+        print(EMPTY_DATABASE)
+        return
+    
+    instructor = academy.find_instructor(input("Zadej email:\n>> "))
+    
+    if not instructor:
+        print("\n[INFO] Instruktor nenalezen")
+        return
+    
+    course = academy.find_course(input("\nNázev kurzu:\n>> "))
+
+    if not course:
+        print("\n[INFO] Kurz nenalezen")
+        return
+    
+    if academy.assign_instructor_to_course(instructor, course):
+        print(f"\n[HOTOVO] {instructor.name} přihlášen -> {course.name}")
+        return
+    
+    print("\n[CHYBA]")
 
 
 def unenroll_instructor(academy: Academy):
-    pass
+    print_title("ODHLÁŠENÍ INSTRUKTORA Z KURZU")
+
+    if not academy.instructors or not academy.courses:
+        print(EMPTY_DATABASE)
+        return
+
+    instructor = academy.find_instructor(input("Zadej email:\n>> "))
+    
+    if not instructor:
+        print("\n[INFO] Instruktor nenalezen")
+        return
+    
+    course = academy.find_course(input("\nNázev kurzu:\n>> "))
+
+    if not course:
+        print("\n[INFO] Kurz nenalezen")
+        return
+    
+    if academy.remove_instructor_from_course(instructor, course):
+        print(f"\n[HOTOVO] {instructor.name} odhlášen -> {course.name}")
+        return
+    
+    print("\n[CHYBA]")
