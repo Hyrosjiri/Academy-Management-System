@@ -33,7 +33,6 @@ from course_func import (
 # Importy pomocných funkcí
 from utils import (
     clear_screen,
-    get_int,
     load_json,
     save_json,
     wait_enter,
@@ -43,7 +42,6 @@ from utils import (
 # Importy textových konstant
 from prompt import (
     MAIN_MENU,
-    EMPTY_DATABASE,
     STUDENT_MENU,
     INSTRUCTOR_MENU,
     COURSE_MENU,
@@ -108,8 +106,10 @@ def main(name_course):
                         case _:
                             print("Neplatná volba.")
                             time.sleep(0.4)
+                            continue
 
-                continue
+                    wait_enter()
+
 
             case "2":
                 while True:
@@ -149,8 +149,9 @@ def main(name_course):
                         case _:
                             print("Neplatná volba.")
                             time.sleep(0.4)
+                            continue
 
-                continue
+                    wait_enter()
 
             case "3":
                 while True:

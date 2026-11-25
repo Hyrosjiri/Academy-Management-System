@@ -13,6 +13,12 @@ class Academy():
             return True
         return False
 
+    def remove_student(self, student):
+        if student:
+            self.students.remove(student)
+            return True
+        return False
+
     # Přidá instruktora
     def add_instructor(self, instructor):
         if instructor:

@@ -46,6 +46,4 @@ PAYMENT_MENU = """[1] Vytvořit platbu
 
 Vyber možnost: """
 
-
-
 EMPTY_DATABASE = "[INFO] Prázdná Databáze"

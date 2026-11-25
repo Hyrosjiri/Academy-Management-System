@@ -1,4 +1,6 @@
 # Importy tříd
+import email
+
 from student import Student
 from academy import Academy
 
@@ -33,7 +35,25 @@ def add_student(academy: Academy):
 
 
 def remove_student(academy: Academy):
-    pass
+    print_title("ODEBRÁNÍ STUDENTA")
+
+    if not academy.students:
+        print(EMPTY_DATABASE)
+        return
+
+    email = input("Email:\n>> ")
+
+    if email == "0":
+        return
+
+    student = academy.find_student(email)
+
+    if not student:
+        print("\n[INFO] Student nenalezen.")
+        return
+
+    if academy.remove_student(student):
+        print(f"[INFO] {student.name} - Odstraněn")
 
 
 def show_students(academy: Academy):
