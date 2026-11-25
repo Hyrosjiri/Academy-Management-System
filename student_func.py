@@ -7,7 +7,8 @@ from academy import Academy
 # Importy pomocných funkcí
 from utils import(
     print_title,
-    get_int
+    get_int,
+    wait_enter
 )
 
 # Importy textových konstant
@@ -53,7 +54,7 @@ def remove_student(academy: Academy):
         return
 
     if academy.remove_student(student):
-        print(f"[INFO] {student.name} - Odstraněn")
+        print(f"\n[INFO] {student.name} - Odstraněn")
 
 
 def show_students(academy: Academy):
@@ -76,7 +77,30 @@ def show_students(academy: Academy):
 
 
 def edit_student(academy: Academy):
-    pass
+    print_title("UPRAVENÍ STUDENTA")
+
+    if not academy.students:
+        print(EMPTY_DATABASE)
+        return
+
+    email = input("Email:\n>> ")
+
+    if email == "0":
+        return
+
+    student = academy.find_student(email)
+
+    if not student:
+        print("\n[INFO] Student nenalezen.")
+        pass
+
+    while True:
+        print(student.name)
+        print(student.email)
+        print(student.phone)
+
+        wait_enter()
+
 
 
 # Přihlásit studenta na kurz
