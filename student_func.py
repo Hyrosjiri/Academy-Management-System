@@ -20,7 +20,7 @@ from prompt import(
 
 
 def add_student(academy: Academy):
-    last_id = load_json("student_id.json")[-1]["id"]
+    last_id = load_json("student_id.json", [{"id":0}])[-1]["id"]
     print_title("PŘIDÁNÍ STUDENTA")
     
     name = input("Jméno:\n>> ")

@@ -10,12 +10,12 @@ def wait_enter(text="\n[ENTER] - Pokračovat"):
     input(text)
 
 
-def load_json(name_json):
+def load_json(name_json, default):
     try:
         with open(name_json, "r", encoding="utf-8") as file:
             return json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
-        return None
+        return default
 
 
 def save_json(name_json, file_data):

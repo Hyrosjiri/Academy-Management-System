@@ -1,4 +1,5 @@
 # Standartní Importy
+from email.policy import default
 import time
 
 # Importy tříd
@@ -51,7 +52,7 @@ from prompt import (
 
 # Funkce
 def load_file(name_academy):
-    data = load_json("academy.json")
+    data = load_json("academy.json", default=None)
 
     if data is None:
         return Academy(name_academy)
