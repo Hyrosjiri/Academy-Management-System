@@ -6,7 +6,8 @@ from academy import Academy
 from utils import(
     print_title,
     get_int,
-    clear_screen
+    clear_screen,
+    wait_enter
 )
 
 # Importy textových konstant
@@ -28,8 +29,8 @@ def create_course(academy: Academy):
             print("\n[INFO] Tento kurz již exituje.")
             return
     
-    price = get_int("Cena:\n>> ")
-    capacity = get_int("Kapacita:\n>> ")
+    price = get_int("\nCena:\n>> ")
+    capacity = get_int("\nKapacita:\n>> ")
 
     course = Course(name, price, capacity)
 
@@ -120,7 +121,14 @@ def edit_course(academy: Academy):
             case "2":
                 course.price = get_int("\nNová cena: ")
             case "3":
-                course.capacity = get_int("\nNová kapacita: ")
+                new_capacity = get_int("\nNová kapacita: ")
+
+                if new_capacity >= len(course.students):
+                    course.capacity = new_capacity
+                    continue
+
+                print("\n[CHYBA] Kapacita musí být nad limit počet studentů!")
+                wait_enter()
             case "0":
                 break
             case _:

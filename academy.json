@@ -1,0 +1,67 @@
+{
+    "name": "BLACKCAP DEV ACADEMY",
+    "students": [
+        {
+            "name": "Jirka",
+            "email": "jirka@email.cz",
+            "phone": 79845613,
+            "student_id": 1,
+            "courses": [
+                "Python"
+            ]
+        },
+        {
+            "name": "Martin",
+            "email": "martin@email.cz",
+            "phone": 98765431,
+            "student_id": 2,
+            "courses": [
+                "Python"
+            ]
+        },
+        {
+            "name": "Karel",
+            "email": "karel@email.cz",
+            "phone": 79865412,
+            "student_id": 3,
+            "courses": [
+                "Python"
+            ]
+        },
+        {
+            "name": "Tomáš",
+            "email": "tomas@email.cz",
+            "phone": 654789132,
+            "student_id": 4,
+            "courses": []
+        }
+    ],
+    "instructors": [
+        {
+            "name": "Lukáš",
+            "email": "lukas@email.cz",
+            "phone": 98745123,
+            "specialization": "Python, Excel",
+            "hourly_rate": 798,
+            "courses": [
+                "Python"
+            ]
+        }
+    ],
+    "courses": [
+        {
+            "name": "Python",
+            "price": 50000,
+            "capacity": 3,
+            "instructors": [
+                "lukas@email.cz"
+            ],
+            "students": [
+                1,
+                2,
+                3
+            ]
+        }
+    ],
+    "payments": []
+}

@@ -1,5 +1,4 @@
 # Standartní Importy
-from email.policy import default
 import time
 
 # Importy tříd

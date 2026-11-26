@@ -45,8 +45,9 @@ def get_int(text):
 def get_email(text):
     while True:
         data = input(text).lower()
-        if "@" in data:
+        if "@" in data or data == "0":
             return data
+            
         print("\n[CHYBA] Neplatný email!")
         
         
