@@ -21,6 +21,12 @@ def create_course(academy: Academy):
     name = input("Kurz:\n>> ")
     if name == "0":
         return
+
+    # Kontrola duplicity
+    for check in academy.courses:
+        if check.name == name:
+            print("\n[INFO] Tento kurz již exituje.")
+            return
     
     price = get_int("Cena:\n>> ")
     capacity = get_int("Kapacita:\n>> ")
@@ -34,7 +40,7 @@ def create_course(academy: Academy):
 def remove_course(academy: Academy):
     print_title("ODSTRANĚNÍ KURZU")
 
-    name = input("Jméno:\n>> ")
+    name = input("Název:\n>> ")
 
     if name == "0":
         return
@@ -49,7 +55,7 @@ def remove_course(academy: Academy):
         if academy.remove_course(course):
             print(f"\n[INFO] {course.name} - Odstraněn")
             return
-    print("\nKurz pro odsranění musí být prázdný.")    
+    print("\nKurz pro odstranění musí být prázdný.")    
 
 
 def show_courses(academy: Academy):

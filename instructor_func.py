@@ -25,6 +25,13 @@ def add_instructor(academy: Academy):
         return
     
     email = input("\nEmail:\n>> ")
+
+    # Kontrola duplicity
+    for check in academy.instructors:
+        if check.email == email:
+            print("\n[INFO] Tento instruktor již exituje.")
+            return
+
     phone = get_int("\nTelefoní číslo:\n>> ")
     specialization = input("\nSpecializace:\n>> ")
     hourly_rate = get_int("\nHodinová mzda:\n>> ")
@@ -52,9 +59,13 @@ def remove_instructor(academy: Academy):
     if not instructor:
         print("\n[INFO] Instruktor nenalezen.")
         return
-    
-    if academy.remove_insturctor(instructor):
-        print(f"\n[INFO] {instructor.name} - Odstraněn")
+
+    if not instructor.courses:
+        if academy.remove_insturctor(instructor):
+            print(f"\n[INFO] {instructor.name} - Odstraněn")
+            return
+
+    print("\n[INFO] Nesmí být přihlášen do kurzu.")
 
 
 def show_instructors(academy: Academy):

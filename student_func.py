@@ -29,6 +29,13 @@ def add_student(academy: Academy):
         return
     
     email = get_email("\nEmail:\n>> ")
+
+    # Kontrola duplicity
+    for check in academy.students:
+        if check.email == email:
+            print("\n[INFO] Tento student již exituje.")
+            return
+
     phone = get_int("\nTelefoní číslo:\n>> ")
     student_id = last_id + 1
 
